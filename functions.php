@@ -7,15 +7,17 @@ if (in_array('elementor/elementor.php', $active_plugins)) {
     // Add your code or functionality here
 
     function my_custom_admin_notice() {
-        ?>
-        <div class="notice notice-success is-dismissible">
-            <p><?php esc_html_e( 'This is my custom admin notice.', 'text-domain' ); ?></p>
-        </div>
-        <?php
+        include_once('elementor-addons/addons.php');
     }
     add_action( 'admin_notices', 'my_custom_admin_notice' );
     
 } else {
-    // Elementor is not active
-    // Add alternative code or handle the situation
+    function my_custom_admin_notice() {
+        ?>
+        <div class="notice notice-warning">
+        <p><?php echo 'this theme requires elementor to be installed.'; ?></p>
+        </div>
+        <?php
+    }
+    add_action( 'admin_notices', 'my_custom_admin_notice' );
 }
